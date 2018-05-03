@@ -5,4 +5,18 @@ from .models import Profile
 # Register your models here.
 
 
-admin.site.register(Profile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('id', 'full_name', 'user_name', 'email')
+
+
+    def full_name(self, obj):
+        return obj.user.first_name + " " + obj.user.last_name
+
+    def user_name(self, obj):
+        return obj.user.username
+
+    def email(self, obj):
+        return obj.user.email
+
+
+admin.site.register(Profile, UserProfileAdmin)
