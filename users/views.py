@@ -81,7 +81,7 @@ class HelloViewSet(viewsets.ViewSet):
         return Response({'http_method': 'DELETE'})
 
 
-class ProfileViewSet(viewsets.ModelViewSet):
-    serializer_class = serializers.ProfileSerializer
+class UserViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.UserSerializer
 
-    queryset = models.Profile.objects.all()
+    queryset = models.User.objects.all()
