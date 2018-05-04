@@ -9,15 +9,16 @@ class HelloSerilizer(serializers.Serializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Profile
-        fields = ('id', 'email', 'password')
-        extra_kwargs = {'password': {'write_only': True}}
+        fields = ('id', 'user_id', 'birthday', 'address')
+        # extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
         user = models.Profile(
-            email=validated_data['email'],
+            birthday=validated_data['birthday'],
+            address=validated_data['address']
         )
 
-        user.set_password(validated_data['password'])
+        # user.set_password(validated_data['password'])
         user.save()
 
         return user
