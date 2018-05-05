@@ -27,7 +27,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
-class ProfileFeedItemSerializer(serializers.Serializer):
+class ProfileFeedItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.UserFeedItem
         fields = ('id', 'user_profile', 'status_text', 'created_at')

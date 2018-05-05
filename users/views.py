@@ -101,3 +101,13 @@ class LoginViewSet(viewsets.ViewSet):
 
     def create(self, request):
         return ObtainAuthToken().post(request)
+
+
+class UserFeedItemViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.ProfileFeedItemSerializer
+    queryset = models.UserFeedItem.objects.all()
+
+    def perform_create(self, serializer):
+        # set the user to logged in user
+        serializer.save(user_profile=self.request.user)
