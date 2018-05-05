@@ -23,3 +23,12 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+
+class UserFeedItem(models.Model):
+    user_profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    status_text = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.status_text
