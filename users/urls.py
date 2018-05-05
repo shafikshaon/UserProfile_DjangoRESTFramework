@@ -6,7 +6,8 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register('hello-viewset', views.HelloViewSet, base_name='hello-viewset')
-router.register('user', views.UserViewSet)
+router.register('user', views.UserViewSet)  # if viewset is model viewset then base_name is not required
+router.register('login', views.LoginViewSet, base_name='login')
 
 
 urlpatterns = [
